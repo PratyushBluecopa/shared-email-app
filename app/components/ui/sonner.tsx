@@ -12,6 +12,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
           "--normal-border": "var(--border)",
         } as React.CSSProperties
       }
+      toastOptions={{ className: "copa:rounded-md" }}
       {...props}
     />
   );

@@ -80,7 +80,7 @@ function DropdownMenuItem({
       data-inset={inset}
       data-variant={variant}
       className={cn(
-        "copa:focus:bg-accent copa:focus:text-accent-foreground copa:data-[variant=destructive]:text-destructive copa:data-[variant=destructive]:focus:bg-destructive/10 copa:dark:data-[variant=destructive]:focus:bg-destructive/20 copa:data-[variant=destructive]:focus:text-destructive copa:data-[variant=destructive]:*:[svg]:!text-destructive [&_svg:not([class*='text-'copa:])]:text-muted-foreground copa:relative copa:flex copa:cursor-default copa:items-center copa:gap-2 copa:rounded-sm copa:px-2 copa:py-1.5 copa:text-sm copa:outline-hidden copa:select-none copa:data-[disabled]:pointer-events-none copa:data-[disabled]:opacity-50 copa:data-[inset]:pl-8 copa:[&_svg]:pointer-events-none copa:[&_svg]:shrink-0 [&_svg:not([class*='size-'copa:])]:size-4",
+        "copa:focus:bg-accent copa:focus:text-accent-foreground copa:data-[variant=destructive]:text-destructive copa:data-[variant=destructive]:focus:bg-destructive/10 copa:dark:data-[variant=destructive]:focus:bg-destructive/20 copa:data-[variant=destructive]:focus:text-destructive copa:data-[variant=destructive]:*:[svg]:!text-destructive copa:[&_svg:not([class*='text-'])]:text-muted-foreground copa:relative copa:flex copa:cursor-default copa:items-center copa:gap-2 copa:rounded-sm copa:px-2 copa:py-1.5 copa:text-sm copa:outline-hidden copa:select-none copa:data-[disabled]:pointer-events-none copa:data-[disabled]:opacity-50 copa:data-[inset]:pl-8 copa:[&_svg]:pointer-events-none copa:[&_svg]:shrink-0 copa:[&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}
@@ -98,7 +98,7 @@ function DropdownMenuCheckboxItem({
     <DropdownMenuPrimitive.CheckboxItem
       data-slot="dropdown-menu-checkbox-item"
       className={cn(
-        "copa:focus:bg-accent copa:focus:text-accent-foreground copa:relative copa:flex copa:cursor-default copa:items-center copa:gap-2 copa:rounded-sm copa:py-1.5 copa:pr-2 copa:pl-8 copa:text-sm copa:outline-hidden copa:select-none copa:data-[disabled]:pointer-events-none copa:data-[disabled]:opacity-50 copa:[&_svg]:pointer-events-none copa:[&_svg]:shrink-0 [&_svg:not([class*='size-'copa:])]:size-4",
+        "copa:focus:bg-accent copa:focus:text-accent-foreground copa:relative copa:flex copa:cursor-default copa:items-center copa:gap-2 copa:rounded-sm copa:py-1.5 copa:pr-2 copa:pl-8 copa:text-sm copa:outline-hidden copa:select-none copa:data-[disabled]:pointer-events-none copa:data-[disabled]:opacity-50 copa:[&_svg]:pointer-events-none copa:[&_svg]:shrink-0 copa:[&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       checked={checked}
@@ -134,7 +134,7 @@ function DropdownMenuRadioItem({
     <DropdownMenuPrimitive.RadioItem
       data-slot="dropdown-menu-radio-item"
       className={cn(
-        "copa:focus:bg-accent copa:focus:text-accent-foreground copa:relative copa:flex copa:cursor-default copa:items-center copa:gap-2 copa:rounded-sm copa:py-1.5 copa:pr-2 copa:pl-8 copa:text-sm copa:outline-hidden copa:select-none copa:data-[disabled]:pointer-events-none copa:data-[disabled]:opacity-50 copa:[&_svg]:pointer-events-none copa:[&_svg]:shrink-0 [&_svg:not([class*='size-'copa:])]:size-4",
+        "copa:focus:bg-accent copa:focus:text-accent-foreground copa:relative copa:flex copa:cursor-default copa:items-center copa:gap-2 copa:rounded-sm copa:py-1.5 copa:pr-2 copa:pl-8 copa:text-sm copa:outline-hidden copa:select-none copa:data-[disabled]:pointer-events-none copa:data-[disabled]:opacity-50 copa:[&_svg]:pointer-events-none copa:[&_svg]:shrink-0 copa:[&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}

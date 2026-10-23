@@ -35,7 +35,7 @@ function sanitizeEmailHtml(html: string): string {
 }
 const CATEGORIES = ["General", "Follow-up", "Reminder", "Notification"];
 
-const selectClass = "copa:h-9 copa:w-full copa:rounded-md copa:border copa:border-input copa:bg-transparent copa:px-3 copa:text-sm";
+const selectClass = "copa:h-8 copa:w-full copa:rounded-md copa:border copa:border-input copa:bg-transparent copa:px-3 copa:text-sm";
 
 export function EmailTemplatesTab() {
   const { templates, isLoading, createTemplate, updateTemplate, deleteTemplate, isSaving } = useEmailTemplates();

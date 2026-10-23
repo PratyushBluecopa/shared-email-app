@@ -964,7 +964,7 @@ export function ComposeEmailModal({
         </DialogHeader>
 
         <div className="copa:flex-1 copa:overflow-y-auto">
-          <div className="copa:space-y-4 copa:py-2">
+          <div className="copa:space-y-4 copa:px-6 copa:py-4">
             {replyMode !== "forward" && (
               <div className="copa:space-y-2">
                 <Label htmlFor="template">Template</Label>
@@ -973,7 +973,7 @@ export function ComposeEmailModal({
                   ref={templateTriggerRef}
                   value={selectedTemplateId}
                   onChange={(e) => void handleTemplateChange(e.target.value)}
-                  className="copa:h-9 copa:w-full copa:rounded-md copa:border copa:border-input copa:bg-transparent copa:px-3 copa:text-sm"
+                  className="copa:h-8 copa:w-full copa:rounded-md copa:border copa:border-input copa:bg-transparent copa:px-3 copa:text-sm"
                 >
                   <option value="none">None</option>
                   {allTemplates.map((template) => (
@@ -1065,7 +1065,7 @@ export function ComposeEmailModal({
         </div>
 
         <DialogFooter>
-          <Button variant="outline" onClick={onClose} disabled={sending}>
+          <Button variant="destructive" onClick={onClose} disabled={sending}>
             Cancel
           </Button>
           {!replyMode && (
