@@ -36,7 +36,9 @@ const formatDateTime = (date: string | Date) =>
 const getRelativeTime = (date: string | Date) =>
   date ? formatDistanceToNow(new Date(ensureUtcDate(date)), { addSuffix: true }) : "";
 
-const emailTime = (e: any) => new Date(e.createdDate || e.createdAt || e.sentAt || 0).getTime();
+// lastMessageAt first so a conversation with a new mail moves to the top, not just new conversations.
+const emailTime = (e: any) =>
+  new Date(e.lastMessageAt || e.createdDate || e.createdAt || e.sentAt || 0).getTime();
 
 export default function SharedInbox() {
   const queryClient = useQueryClient();

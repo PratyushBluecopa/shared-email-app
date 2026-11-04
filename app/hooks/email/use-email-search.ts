@@ -20,9 +20,8 @@ export function useEmailSearch() {
 
   const runSearch = useCallback(
     async (filters: EmailSearchFilters, opts: { page?: number; pageSize?: number } = {}) => {
-      // `to`, `cc`, `hasAttachment` are required by the backend type even when
-      // empty, so always send them.
-      const payload: EmailMessageSearchRequest = {
+      // `to` and `cc` are required by the backend type even when empty, so always send them.
+      const payload = {
         accountId,
         page: opts.page ?? 1,
         pageSize: opts.pageSize ?? 20,
@@ -30,8 +29,9 @@ export function useEmailSearch() {
         sortDirection: "DESC",
         to: filters.to ?? [],
         cc: filters.cc ?? [],
-        hasAttachment: filters.hasAttachment ?? false,
-      };
+      } as EmailMessageSearchRequest;
+      // Unchecked means "any": sending false would drop every mail that has attachments.
+      if (filters.hasAttachment) payload.hasAttachment = true;
       if (filters.from) payload.from = filters.from;
       if (filters.subjectContains) payload.subjectContains = filters.subjectContains;
       if (filters.dateFrom) payload.dateFrom = filters.dateFrom;
