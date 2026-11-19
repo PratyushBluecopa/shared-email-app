@@ -76,7 +76,7 @@ export default function SharedInbox() {
     setIsQuickSearchFetching(true);
     void Promise.allSettled([
       runSubjectQuickSearch({ subjectContains: q }, { page: 1, pageSize: QUICK_SEARCH_RESULT_CAP }),
-      runSenderQuickSearch({ from: q }, { page: 1, pageSize: QUICK_SEARCH_RESULT_CAP }),
+      runSenderQuickSearch({ from: [q] }, { page: 1, pageSize: QUICK_SEARCH_RESULT_CAP }),
     ]).then((results) => {
       // A newer commit owns publishing now; drop this older response.
       if (seq !== quickSearchSeqRef.current) return;

@@ -7,8 +7,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "~/components/ui/popover
 
 /** Payload shape the backend search endpoint accepts. */
 export interface EmailSearchFilters {
-  /** Free-text match against the sender address. */
-  from?: string;
+  /** Sender addresses; a message from any of them matches. */
+  from?: string[];
   /** Recipients on the `To` line. */
   to?: string[];
   /** Recipients on the `Cc` line. */
@@ -26,7 +26,7 @@ export interface EmailSearchFilters {
 /** Number of populated filter fields (0 = no advanced search active). */
 export function countActiveFilters(f: EmailSearchFilters): number {
   return [
-    f.from?.trim(),
+    f.from?.length,
     f.to?.length,
     f.cc?.length,
     f.subjectContains?.trim(),
@@ -52,7 +52,7 @@ interface EmailSearchPopoverProps {
  * sees the committed filters on Search / Clear.
  */
 export function EmailSearchPopover({ value, onApply, onClear, trigger, open, onOpenChange }: EmailSearchPopoverProps) {
-  const [from, setFrom] = useState(value.from ?? "");
+  const [from, setFrom] = useState((value.from ?? []).join(", "));
   const [to, setTo] = useState((value.to ?? []).join(", "));
   const [cc, setCc] = useState((value.cc ?? []).join(", "));
   const [subjectContains, setSubjectContains] = useState(value.subjectContains ?? "");
@@ -63,7 +63,7 @@ export function EmailSearchPopover({ value, onApply, onClear, trigger, open, onO
   // Re-sync the draft when the panel opens or the parent's filters change.
   useEffect(() => {
     if (!open) return;
-    setFrom(value.from ?? "");
+    setFrom((value.from ?? []).join(", "));
     setTo((value.to ?? []).join(", "));
     setCc((value.cc ?? []).join(", "));
     setSubjectContains(value.subjectContains ?? "");
@@ -74,7 +74,7 @@ export function EmailSearchPopover({ value, onApply, onClear, trigger, open, onO
 
   const handleApply = () => {
     onApply({
-      from: from.trim() || undefined,
+      from: splitEmails(from),
       to: splitEmails(to),
       cc: splitEmails(cc),
       subjectContains: subjectContains.trim() || undefined,
@@ -120,7 +120,7 @@ export function EmailSearchPopover({ value, onApply, onClear, trigger, open, onO
           </button>
         </div>
 
-        {field("email-search-from", "From", from, setFrom, "sender name or email")}
+        {field("email-search-from", "From", from, setFrom, "a@x.com, b@x.com")}
         {field("email-search-to", "To", to, setTo, "one or more emails, comma-separated")}
         {field("email-search-cc", "CC", cc, setCc, "one or more emails, comma-separated")}
         {field("email-search-subject", "Subject contains", subjectContains, setSubjectContains, "e.g. meeting")}

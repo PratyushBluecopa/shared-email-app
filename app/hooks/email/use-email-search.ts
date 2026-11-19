@@ -32,7 +32,7 @@ export function useEmailSearch() {
       } as EmailMessageSearchRequest;
       // Unchecked means "any": sending false would drop every mail that has attachments.
       if (filters.hasAttachment) payload.hasAttachment = true;
-      if (filters.from) payload.from = filters.from;
+      if (filters.from?.length) payload.from = filters.from;
       if (filters.subjectContains) payload.subjectContains = filters.subjectContains;
       if (filters.dateFrom) payload.dateFrom = filters.dateFrom;
       if (filters.dateTo) payload.dateTo = filters.dateTo;
