@@ -1,7 +1,17 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { useSearchMessages, type EmailMessageSearchRequest } from "@bluecopa/react";
 import { useAppContext } from "~/contexts/app-context";
 import type { EmailSearchFilters } from "~/components/email/email-search-popover";
+
+type SearchPage = { content?: any[]; conversations?: any[] } | undefined;
+
+// Search returns messages, not conversations: the row id must be the conversation id, or opening it, marking it read and deduping all use a message id
+const withConversationIds = <T extends SearchPage>(data: T): T => {
+  const rows = data?.content ?? data?.conversations;
+  if (!rows) return data;
+  const content = rows.map((m) => ({ ...m, messageId: m.id, id: m.conversationId ?? m.id }));
+  return { ...data, content, conversations: undefined };
+};
 
 /**
  * Advanced email search via the SDK's `useSearchMessages` mutation. The page
@@ -37,12 +47,12 @@ export function useEmailSearch() {
       if (filters.dateFrom) payload.dateFrom = filters.dateFrom;
       if (filters.dateTo) payload.dateTo = filters.dateTo;
 
-      return await searchMutation.mutateAsync(payload);
+      return withConversationIds((await searchMutation.mutateAsync(payload)) as SearchPage);
     },
     [searchMutation, accountId],
   );
 
-  const data = (searchMutation.data ?? undefined) as
+  const data = useMemo(() => withConversationIds(searchMutation.data as SearchPage), [searchMutation.data]) as
     | {
         content?: unknown[];
         conversations?: unknown[];
