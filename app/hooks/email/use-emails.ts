@@ -104,7 +104,7 @@ export function useEmails(
     isLoading,
     error: queryError,
     refetch,
-  } = useGetAllConversations({ page, pageSize } as any);
+  } = useGetAllConversations({ page, pageSize, accountId });
 
   const conversations = Array.isArray(conversationsResponse)
     ? conversationsResponse
